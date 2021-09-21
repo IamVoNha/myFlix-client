@@ -1,5 +1,8 @@
 import React from 'react';
+import axios from 'axios';
 import ReactDOM from 'react-dom';
+import { RegistrationView } from '../registration-view/registration-view';
+import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 
@@ -10,32 +13,59 @@ export class MainView extends React.Component {
      constructor() {
          super();
          this.state = {
-             movies: [
-                 { _id: 1, Title: 'Inception', Description: 'A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.', ImagePath: 'https://upload.wikimedia.org/wikipedia/en/2/2e/Inception_%282010%29_theatrical_poster.jpg', Genre: 'Action', Director: 'Christopher Nolan', Actors: "Leonardo DiCaprio, Joseph Gordan-Levitt, Elliot Page"},
-                 { _id: 2, Title: 'The Shawshank Redemption', Description: 'Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.', ImagePath: 'https://upload.wikimedia.org/wikipedia/en/8/81/ShawshankRedemptionMoviePoster.jpg', Genre: 'Drama', Director: 'Frank Darabont', Actors: "Tim Robbins, Morgan Freeman, Bob Gunton"},
-                 { _id: 3, Title: 'Gladiator', Description: 'A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.', ImagePath: 'https://upload.wikimedia.org/wikipedia/en/f/fb/Gladiator_%282000_film_poster%29.png', Genre: 'Action', Director: 'Ridley Scott', Actors: "Russel Crowe, Joaquin Phoenix, Connie Nielsen"}
-             ],
-             selectedMovie: null
+             movies: [],
+             selectedMovie: null,
+             user: null,
          } 
      }
 
-       setSelectedMovie(newSelectedMovie) {
-     this.setState({
-       selectedMovie: newSelectedMovie
-     });
-   }
+     componentDidMount(){
+      axios.get('https://nhas-flixdb-2021.herokuapp.com/movies')
+        .then(response => {
+          this.setState({
+            movies: response.data
+          });
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+
+    /*When a movie is clicked, this function is invoked and updates the state of the `selectedMovie` *property to that movie*/
+    setSelectedMovie(movie) {
+      this.setState({
+        selectedMovie: movie
+      });
+    }
+
+    /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
+    onLoggedIn(user) {
+      this.setState({
+        user
+      });
+    }
+
+    onRegister(register) {
+      this.setState({
+        register
+      });
+    }
 
      render() {
-         const { movies, selectedMovie } = this.state;
+         const { movies, selectedMovie, user, register } = this.state;
 
-         if (movies.length === 0) return <div className="main-view">The list is empty!</div>;
+         if (!register) return <RegistrationView onRegister={register => this.onRegister(register)} />;
+
+         if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+
+         if (movies.length === 0) return <div className="main-view" />;
 
          return (
-           <div className="main-view">
-             {selectedMovie
-             ? <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }}/>
-             : movies.map(movie => (
-               <MovieCard key={movie._id} movieData={movie} onMovieClick={(movie) => { this.setSelectedMovie(movie) }}/>
+          <div className="main-view">
+            {selectedMovie
+              ? <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }}/>
+              : movies.map(movie => (
+                <MovieCard key={movie._id} movieData={movie} onMovieClick={(newSelectedMovie) => { this.setSelectedMovie(newSelectedMovie) }}/>
              ))
            }
            </div>
