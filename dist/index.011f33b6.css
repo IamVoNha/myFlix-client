@@ -1,0 +1,46 @@
+form {
+  text-align: center;
+  background-color: #b3b3b3;
+  border-radius: 40px;
+  border: 0.3px solid;
+  box-shadow: 5px 5px 5px;
+  font-weight: 400;
+  font-size: 20px;
+  width: 400px;
+  margin: auto;
+  margin-top: 15%;
+  padding: 40px;
+}
+form {
+  text-align: center;
+  background-color: #b3b3b3;
+  border-radius: 40px;
+  border: 0.3px solid;
+  box-shadow: 5px 5px 5px;
+  font-weight: 400;
+  font-size: 20px;
+  width: 400px;
+  margin: auto;
+  margin-top: 15%;
+  padding: 40px;
+}
+.movie-poster {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.movie-poster {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+img {
+  max-width: 150px;
+}
+.my-flix {
+  color: #3f0e80;
+}
+
+.cloudy {
+  cloudy: #b3b3b3;
+}
+/*# sourceMappingURL=index.011f33b6.css.map */
