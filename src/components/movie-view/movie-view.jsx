@@ -1,4 +1,5 @@
 import React from 'react';
+import "./movie-view.scss";
 
  export class MovieView extends React.Component {
 
@@ -26,12 +27,7 @@ import React from 'react';
            <span className="label">Director: </span>
            <span className="value">{movie.Director}</span>
          </div>
-         <div className="movie-actors">
-           <span className="label">Actors: </span>
-           <span className="value">{movie.Actors}</span>
-         </div>
          <button onClick={() => { onBackClick(null); }}>Back</button>
-
        </div>
      );
    }
