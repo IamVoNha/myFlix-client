@@ -9,13 +9,27 @@ export function RegistrationView(props) {
   const [ email, setEmail ] = useState('');
   const [ birthdate, setBirthDate ] = useState('');
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(username, password);
-    /* Send a request to the server for authentication */
-    /* then call props.onLoggedIn(username) */
-    props.onLoggedIn(username);
-  };
+    let setisValid = formValidation();
+    if (setisValid) {
+      axios.post('https://nhas-flixdb-2021.herokuapp.com/users', {
+        Username: username,
+        Password: password,
+        Email: email,
+        Birthdate: birthdate
+      })
+        .then(response => {
+          const data = response.data;
+          console.log(data);
+          window.open('/', '_self'); // the second argument '_self' is necessary so that the page will open in the current tab
+        })
+        .catch(e => {
+          console.log('error registering the user')
+        });
+    };
+  }
+
 
   return (
       <Form>
