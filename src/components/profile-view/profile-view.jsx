@@ -166,71 +166,71 @@ export class ProfileView extends React.Component {
           <Card.Body>
             <Form noValidate validated={validated} className="update-form" onSubmit={(e) => this.handleUpdate(e, this.Name, this.Username, this.Password, this.Email, this.Birthdate)}>
 
-              <Form.Group controlId="formName">
-                <Form.Label className="form-label">Name</Form.Label>
-                <Form.Control type="text" placeholder="Change Name" onChange={(e) => this.setName(e.target.value)} />
-              </Form.Group>
+                  <Form.Group controlId="formName">
+                      <Form.Label className="form-label">Name</Form.Label>
+                      <Form.Control type="text" placeholder="Change Name" onChange={(e) => this.setName(e.target.value)} />
+                  </Form.Group>
 
-              <Form.Group controlId="formBasicUsername">
-                <Form.Label className="form-label">
-                  Username<span className="required">*</span>
-                </Form.Label>
-                <Form.Control type="text" placeholder="Change Username" onChange={(e) => this.setUsername(e.target.value)} />
-              </Form.Group>
+                  <Form.Group controlId="formBasicUsername">
+                      <Form.Label className="form-label">
+                        Username<span className="required">*</span>
+                      </Form.Label>
+                      <Form.Control type="text" placeholder="Change Username" onChange={(e) => this.setUsername(e.target.value)} />
+                  </Form.Group>
 
-              <Form.Group controlId="formBasicPassword">
-                <Form.Label className="form-label">
-                  Password<span className="required">*</span>
-                </Form.Label>
-                <Form.Control type="password" placeholder="New Password" onChange={(e) => this.setPassword(e.target.value)} />
-              </Form.Group>
+                  <Form.Group controlId="formBasicPassword">
+                      <Form.Label className="form-label">
+                        Password<span className="required">*</span>
+                      </Form.Label>
+                      <Form.Control type="password" placeholder="New Password" onChange={(e) => this.setPassword(e.target.value)} />
+                  </Form.Group>
 
-              <Form.Group controlId="formBasicEmail">
-                <Form.Label className="form-label">
-                  Email<span className="required">*</span>
-                </Form.Label>
-                <Form.Control type="email" placeholder="Change Email" onChange={(e) => this.setEmail(e.target.value)} />
-              </Form.Group>
+                  <Form.Group controlId="formBasicEmail">
+                      <Form.Label className="form-label">
+                        Email<span className="required">*</span>
+                      </Form.Label>
+                      <Form.Control type="email" placeholder="Change Email" onChange={(e) => this.setEmail(e.target.value)} />
+                  </Form.Group>
 
-              <Form.Group controlId="formBasicBirthday">
-                <Form.Label className="form-label">Birthdate</Form.Label>
-                <Form.Control type="date" placeholder="Change Birthdate" onChange={(e) => this.setBirthdate(e.target.value)} />
-              </Form.Group>
+                  <Form.Group controlId="formBasicBirthday">
+                      <Form.Label className="form-label">Birthdate</Form.Label>
+                      <Form.Control type="date" placeholder="Change Birthdate" onChange={(e) => this.setBirthdate(e.target.value)} />
+                  </Form.Group>
 
-              <Button variant='outline-danger' type="submit">
-                Update
-              </Button>
+                  <Button variant='outline-danger' type="submit">
+                      Update
+                  </Button>
 
               <h3>Delete your Account</h3>
              
-                <Button variant='outline-danger' onClick={(e) => this.handleDeleteUser(e)}>
-                  Delete Account
-                </Button>
+                  <Button variant='outline-danger' onClick={(e) => this.handleDeleteUser(e)}>
+                    Delete Account
+                  </Button>
              
              <h2>Your Favorites Movies</h2>
           
             {FavoriteMovies.length === 0 && <div className="text-center">Empty.</div>}
 
-            <div className="favorites-movies ">
-              {FavoriteMovies.length > 0 &&
-                movies.map((movies) => {
-                  if (movies._id === FavoriteMovies.find((favMovie) => favMovie === movies._id)) {
-                    return (
-                      <div className="movie-card-deck">
-                        <div className="favorites-item card-content" style={{ width: '18rem', float: 'left' }} key={movies._id}>
-                          <Card.Body>
-                          <Card.Img style={{ width: '18rem' }} className="movieCard" variant="top" src={movies.ImagePath} />
-                            <Card.Title className="movie-card-title">{movies.Title}</Card.Title>
-                            <Button variant='outline-danger' size="sm" block className="profile-button remove-favorite" onClick={(e) => this.handleRemoveFavorite(e, movies._id)}>
-                              Remove
-                            </Button>
-                          </Card.Body>
-                        </div>
-                      </div>
-                    );
-                  }
-                })}
-            </div>
+                  <div className="favorites-movies ">
+                    {FavoriteMovies.length > 0 &&
+                      movies.map((movies) => {
+                        if (movies._id === FavoriteMovies.find((favMovie) => favMovie === movies._id)) {
+                          return (
+                            <div className="movie-card-deck">
+                              <div className="favorites-item card-content" style={{ width: '18rem', float: 'left' }} key={movies._id}>
+                                <Card.Body>
+                                <Card.Img style={{ width: '18rem' }} className="movieCard" variant="top" src={movies.ImagePath} />
+                                  <Card.Title className="movie-card-title">{movies.Title}</Card.Title>
+                                  <Button variant='outline-danger' size="sm" block className="profile-button remove-favorite" onClick={(e) => this.handleRemoveFavorite(e, movies._id)}>
+                                    Remove
+                                  </Button>
+                                </Card.Body>
+                              </div>
+                            </div>
+                          );
+                        }
+                      })}
+                  </div>
             </Form>
 
           </Card.Body>
