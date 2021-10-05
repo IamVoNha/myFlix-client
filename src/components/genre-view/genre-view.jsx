@@ -1,11 +1,10 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
-import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/Button'
+import Button from 'react-bootstrap/Button';
+export class GenreView extends React.Component {
 
-export default class GenreView extends React.Component {
-  render(){
-    const {genre, onBackClick} = this.props;
+  render() {
+    const { genre, onBackClick } = this.props;
 
     return (
       <Card>
@@ -16,14 +15,5 @@ export default class GenreView extends React.Component {
         </Card.Body>
       </Card>
     );
-
   }
 }
-
-GenreView.propTypes = {
-  genre: PropTypes.shape({
-    Name: PropTypes.string.isRequired,
-    Description: PropTypes.string.isRequired
-  }).isRequired,
-  onBackClick: PropTypes.func.isRequired
-};
