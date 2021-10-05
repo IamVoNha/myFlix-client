@@ -49,24 +49,25 @@ export class ProfileView extends React.Component {
   }
 
 
-  removeFavoriteMovie() {
-    const token = localStorage.getItem('token');
-    const username = localStorage.getItem('user');
+  handleRemoveFavorite(e, movie) {
+    e.preventDefault();
 
-    
-    axios.delete(`https://nhas-flixdb-2021.herokuapp.com/users/${username}/movies/${movies._id}`, {
+    const username = localStorage.getItem('user');
+    const token = localStorage.getItem('token');
+    axios
+      .delete(`https://nhas-flixdb-2021.herokuapp.com/users/${username}/Movies/${movie}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
-      
       .then(() => {
-        alert('Movie was removed');
+        alert('Movie removed from favorites');
         this.componentDidMount();
+        // window.open('_self');
       })
       .catch(function (error) {
         console.log(error);
-      })
-    // .then(() => window.location.reload());
+      });
   }
+
 
   handleUpdate(e, newName, newUsername, newPassword, newEmail, newBirthdate) {
     this.setState({
@@ -161,31 +162,6 @@ export class ProfileView extends React.Component {
       <Row className="profile-view">
         <Card className="profile-card">
           <h1 className="text-center">Your Account</h1>
-          <h2>Your Favorites Movies</h2>
-          <Card.Body>
-            {FavoriteMovies.length === 0 && <div className="text-center">Empty.</div>}
-
-            <div className="favorites-movies ">
-              {FavoriteMovies.length > 0 &&
-                movies.map((movies) => {
-                  if (movies._id === FavoriteMovies.find((favMovie) => favMovie === movies._id)) {
-                    return (
-                      <CardDeck className="movie-card-deck">
-                        <Card className="favorites-item card-content" style={{ width: '16rem' }} key={movies._id}>
-                          <Card.Img style={{ width: '18rem' }} className="movieCard" variant="top" src={movies.ImagePath} />
-                          <Card.Body>
-                            <Card.Title className="movie-card-title">{movies.Title}</Card.Title>
-                            <Button size='sm' className='profile-button remove-favorite' variant='danger' value={movies._id} onClick={(e) => this.removeFavoriteMovie(e, movies)}>
-                              Remove
-                            </Button>
-                          </Card.Body>
-                        </Card>
-                      </CardDeck>
-                    );
-                  }
-                })}
-            </div>
-          </Card.Body>
           <h3 className="section">Update Profile</h3>
           <Card.Body>
             <Form noValidate validated={validated} className="update-form" onSubmit={(e) => this.handleUpdate(e, this.Name, this.Username, this.Password, this.Email, this.Birthdate)}>
@@ -221,16 +197,40 @@ export class ProfileView extends React.Component {
                 <Form.Control type="date" placeholder="Change Birthdate" onChange={(e) => this.setBirthdate(e.target.value)} />
               </Form.Group>
 
-              <Button variant='danger' type="submit">
+              <Button variant='outline-danger' type="submit">
                 Update
               </Button>
 
               <h3>Delete your Account</h3>
-              <Card.Body>
-                <Button variant='danger' onClick={(e) => this.handleDeleteUser(e)}>
+             
+                <Button variant='outline-danger' onClick={(e) => this.handleDeleteUser(e)}>
                   Delete Account
                 </Button>
-              </Card.Body>
+             
+             <h2>Your Favorites Movies</h2>
+          
+            {FavoriteMovies.length === 0 && <div className="text-center">Empty.</div>}
+
+            <div className="favorites-movies ">
+              {FavoriteMovies.length > 0 &&
+                movies.map((movies) => {
+                  if (movies._id === FavoriteMovies.find((favMovie) => favMovie === movies._id)) {
+                    return (
+                      <div className="movie-card-deck">
+                        <div className="favorites-item card-content" style={{ width: '18rem', float: 'left' }} key={movies._id}>
+                          <Card.Body>
+                          <Card.Img style={{ width: '18rem' }} className="movieCard" variant="top" src={movies.ImagePath} />
+                            <Card.Title className="movie-card-title">{movies.Title}</Card.Title>
+                            <Button variant='outline-danger' size="sm" block className="profile-button remove-favorite" onClick={(e) => this.handleRemoveFavorite(e, movies._id)}>
+                              Remove
+                            </Button>
+                          </Card.Body>
+                        </div>
+                      </div>
+                    );
+                  }
+                })}
+            </div>
             </Form>
 
           </Card.Body>
