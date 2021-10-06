@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 import { Navbar, Nav } from 'react-bootstrap';
 
+import './navbar-view.scss';
+
 export class NavBar extends React.Component {
   constructor() {
     super();

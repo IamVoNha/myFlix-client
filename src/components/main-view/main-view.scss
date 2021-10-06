@@ -3,52 +3,14 @@
   --blueChalk: #373b69;
 }
 
-.app-container {
-  background-color: var(--deepBlue);
+body {
+  background: linear-gradient(111.34deg, var(--deepBlue) 0, var(--deepBlue) 100%);
 }
 
 .container {
   background-color: var(--blueChalk);
   padding: 15px;
 }
-
-.movie-title {
-    color: var(--blueChalk);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.5rem;
-    letter-spacing: 0.5px;
-}
-
-.movie-card_card {
-    background-color: #373b69;
-    border-radius: 5px;
-    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    position: relative;
-    margin: 1rem;
-    width: 250px;
-}
-
-.movie-info {
-    background-color: var(--deepBlue);
-    color: #fff;
-    padding: 2rem;
-    position: absolute;
-    max-height: 100%;
-    overflow: auto;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    transform: translateY(101%);
-    transition: transform 0.4s ease-in;
-}
-
-.movie-card_card :hover .movie-info {
-    transform: translateY(0);
-}
-
 
 .profile-view {
   border: .3px solid grey;
@@ -70,7 +32,7 @@ background-color: var(--blueChalk);
 }
 
 .link-text{
-   font-size: 20px;
+   font-size: 23px;
 }
 
 

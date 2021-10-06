@@ -6,6 +6,8 @@ import {Link} from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
+import './registration-view.scss';
+
 export function RegistrationView (_props) {
 
   const [username, setUsername] = useState('');
@@ -49,7 +51,7 @@ export function RegistrationView (_props) {
 
   return(
 
-    <Form>
+    <Form className='register-view'>
       <Form.Group controlId="formUsername">
       <h1 className="h1">
         Join Now!
