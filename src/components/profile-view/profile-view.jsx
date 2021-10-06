@@ -219,7 +219,7 @@ export class ProfileView extends React.Component {
                             <div className="movie-card-deck">
                               <div className="favorites-item card-content" style={{ width: '18rem', float: 'left' }} key={movies._id}>
                                 <Card.Body>
-                                <Card.Img style={{ width: '18rem' }} className="movieCard" variant="top" src={movies.ImagePath} />
+                                <Card.Img className="movieCard" variant="top" src={movies.ImagePath} />
                                   <Card.Title className="movie-card-title">{movies.Title}</Card.Title>
                                   <Button variant='outline-danger' size="sm" block className="profile-button remove-favorite" onClick={(e) => this.handleRemoveFavorite(e, movies._id)}>
                                     Remove
