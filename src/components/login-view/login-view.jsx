@@ -8,6 +8,8 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Col from 'react-bootstrap/Col';
 
+import "./login-view.scss";
+
 export function LoginView (props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -29,7 +31,7 @@ export function LoginView (props) {
   };
 
   return (
-      <Col>
+      <Col className='login-view'>
         <Form>
           <br></br>
             <h3>Login to MyFlix</h3>
