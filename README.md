@@ -19,23 +19,23 @@ This Movie API was built using React, giving it a responsive & interactive user 
 
 # Main View
 
-## Login view
+### Login view
 
 * Allows users to log in with a username and password
 * Registration view
 * Allows new users to register (username, password, email, birthday)
 
-## Genre view
+### Genre view
 
 * Returns data about a genre, with a name and description
 * Displays example movies
 
-## Director view
+### Director view
 
 * Returns data about a director (name, bio, birth year, death year)
 * Displays example movies
 
-## Profile view
+### Profile view
 
 * Allows users to update their user info (username, password, email, date of birth)
 * Allows existing users to deregister
