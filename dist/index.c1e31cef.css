@@ -3,7 +3,19 @@
   font-weight: bold;
 }
 
+:root {
+  --deepBlue: #22254b;
+  --blueChalk: #373b69;
+}
 
+.profile-view {
+  width: 1000px;
+  background-color: var(--deepBlue);
+}
+
+.profile-card {
+  width: 950px;
+}
 :root {
   --deepBlue: #22254b;
   --blueChalk: #373b69;

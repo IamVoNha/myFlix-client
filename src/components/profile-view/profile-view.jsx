@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { Button, Card, CardDeck, Form, Row } from 'react-bootstrap';
+import { Button, Card, Form, Row } from 'react-bootstrap';
 import './profile-view.scss';
 
 export class ProfileView extends React.Component {
@@ -219,7 +219,7 @@ export class ProfileView extends React.Component {
                             <div className="movie-card-deck">
                               <div className="favorites-item card-content" style={{ width: '18rem', float: 'left' }} key={movies._id}>
                                 <Card.Body>
-                                <Card.Img style={{ width: '18rem' }} className="movieCard" variant="top" src={movies.ImagePath} />
+                                <Card.Img className="movieCard" variant="top" src={movies.ImagePath} />
                                   <Card.Title className="movie-card-title">{movies.Title}</Card.Title>
                                   <Button variant='outline-danger' size="sm" block className="profile-button remove-favorite" onClick={(e) => this.handleRemoveFavorite(e, movies._id)}>
                                     Remove

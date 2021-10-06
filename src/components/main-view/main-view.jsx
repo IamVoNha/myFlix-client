@@ -1,8 +1,10 @@
 import React from 'react';
 import axios from 'axios';// Using it to fetch the movies, then set the state of movies using this.setState
+import { connect } from 'react-redux';
+import { setMovies } from '../../actions/actions';
+import MoviesList from '../movies-list/movies-list';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { LoginView } from '../login-view/login-view';
 import { RegistrationView } from '../registration-view/registration-view';
@@ -20,12 +22,11 @@ import NavBar from '../navbar-view/navbar-view'
 import './main-view.scss';
 
 
-export class MainView extends React.Component {
+class MainView extends React.Component {
 
     constructor() { 
         super(); 
         this.state = {
-            movies: [],
             user: null,
           };    
     }
@@ -64,18 +65,15 @@ export class MainView extends React.Component {
     // Getting all movies
     getMovies(token) {
       axios.get('https://nhas-flixdb-2021.herokuapp.com/movies', {
-        headers: { Authorization: `Bearer ${token}` }//passing bearer authorization, you can make authenticated requests to your API
+        headers: { Authorization: `Bearer ${token}` }//passing bearer authorization, which allows requests to your API!
       })
         .then(response => {
-          // Assigning the result to the state
-          this.setState({
-            movies: response.data
-          });
-        })
+          this.props.setMovies(response.data);
+      })
         .catch(function (error) {
           console.log(error);
-        })
-    }
+      });
+  }
   
   //  Getting user data
   getUsers(token) {
@@ -94,7 +92,7 @@ export class MainView extends React.Component {
       });
   }
 
-  //new user is registered  
+  //new user registration
   onRegister(register) {
     this.setState({
       register: register,
@@ -102,7 +100,8 @@ export class MainView extends React.Component {
   }
 
     render() {
-        const { movies, user} = this.state;
+      let { movies } = this.props;
+      let { user } = this.state;
          // If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView
          console.log("render", user);
 
@@ -120,11 +119,7 @@ export class MainView extends React.Component {
                           this.onLoggedIn(user)} />
                           </Col>
                             if (movies.length === 0) return <div className="main-view" />;
-                            return movies.map(m => (
-                              <Col md={3} key={m._id}>
-                                <MovieCard movie={m} />
-                          </Col>
-                      ))
+                            return <MoviesList movies={movies}/>;
                   }} />
 
                   <Route path="/login" render={({history}) => {
@@ -194,5 +189,8 @@ export class MainView extends React.Component {
     }
   };
 
+  let mapStateToProps = state => {
+    return { movies: state.movies }
+  }
 
-  export default MainView;
+  export default connect(mapStateToProps, { setMovies } )(MainView);
