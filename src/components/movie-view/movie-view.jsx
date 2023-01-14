@@ -61,7 +61,7 @@ import "./movie-view.scss";
 
   }
 }
-
+ 
 MovieView.propTypes = {
   movieData: PropTypes.shape({
     Title: PropTypes.string.isRequired,
